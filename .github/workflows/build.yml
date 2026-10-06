@@ -38,6 +38,7 @@ jobs:
           npx cap add android
           sed -i 's/<activity/<activity android:screenOrientation="sensorLandscape"/' android/app/src/main/AndroidManifest.xml
           sed -i 's#<style name="AppTheme.NoActionBar" parent="Theme.AppCompat.DayNight.NoActionBar">#&<item name="android:windowFullscreen">true</item>#' android/app/src/main/res/values/styles.xml
+          printf "\ndependencies {\n    implementation platform('org.jetbrains.kotlin:kotlin-bom:1.8.22')\n}\n" >> android/app/build.gradle
           npx cap sync android
       - name: Build and sign release
         run: |
